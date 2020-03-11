@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+a, b{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+a:hover{
+    color: blue;
+}
+
+.btnPrevNext button{
+    margin: 20px;
+    padding: 10px;
+    border-style: outset;
+    border-radius: 2px;
+}

@@ -1,0 +1,32 @@
+<div ng-controller="detailsController" class="details">
+    <div class="pokeAbility">
+        <b>Ability :</b>
+        <ul ng-repeat="x in pokeAbilities">
+            <br>
+            <li>
+                <a href="{{x.ability.url}}">{{x.ability.name}}</a>
+            </li>
+        </ul>
+        <br>
+    </div>
+    <div class="pokeHeight">
+        <b>Height : {{pokeHeight}}</b>
+        <br><br>
+    </div>
+    <div class="pokeWeight">
+        <b>Weight : {{pokeWeight}}</b>
+        <br><br>
+    </div>
+    <div class="pokeSprites">
+        <b>Default :</b>
+        <br>
+        <img src="{{pokeSprites.front_default}}" alt="">
+        <img src="{{pokeSprites.back_default}}" alt="">
+        <br>
+        <b>Shiny :</b>
+        <br>
+        <img src="{{pokeSprites.front_shiny}}" alt="">
+        <img src="{{pokeSprites.back_shiny}}" alt="">
+        <br>
+    </div>
+</div>

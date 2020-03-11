@@ -1,0 +1,14 @@
+<div ng-controller="myCtrl" class="listPokemon">
+    <b>Pokemon Name :</b>
+    <ul ng-repeat="x in pokeList">
+        <br>
+        <li>
+            <a href="#!/{{x.name}}">{{x.name}}</a>
+        </li>
+    </ul>
+    <div class="btnPrevNext">
+        <br>
+        <button ng-click="getDetail(previous)" ng-disabled="!previous">Previous</button>
+        <button ng-click="getDetail(next)" ng-disabled="!next">Next</button>
+    </div>
+</div>
