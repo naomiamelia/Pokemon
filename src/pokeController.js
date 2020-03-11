@@ -32,6 +32,7 @@
             $rootScope.pokeList = response.data.results;
             $scope.next = response.data.next;
             $scope.previous = response.data.previous;
+
         });
         $scope.getDetail = function (currUrl) {
             $http({
