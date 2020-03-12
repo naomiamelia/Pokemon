@@ -1,6 +1,6 @@
-<div ng-controller="myCtrl" class="listPokemon">
+<div class="listPokemon">
     <b>Pokemon Name :</b>
-    <ul ng-repeat="x in pokeList">
+    <ul ng-repeat="x in $root.pokeList">
         <br>
         <li>
             <a href="#!/{{x.name}}">{{x.name}}</a>
@@ -8,7 +8,7 @@
     </ul>
     <div class="btnPrevNext">
         <br>
-        <button ng-click="getDetail(previous)" ng-disabled="!previous">Previous</button>
-        <button ng-click="getDetail(next)" ng-disabled="!next">Next</button>
+        <button ng-click="vm.getLink(vm.previous)" ng-disabled="!vm.previous">Previous</button>
+        <button ng-click="vm.getLink(vm.next)" ng-disabled="!vm.next">Next</button>
     </div>
 </div>

@@ -7,33 +7,46 @@
 // })()
 
 (function () {
-    var app = angular.module('app', ['ngRoute']);
-    app.config(function ($routeProvider) {
-        $routeProvider
-            .when('/', {
-                templateUrl: "list.html",
-                controller: 'myCtrl'
-            })
-            .when('/:pokemonName', {
-                templateUrl: "details.html",
-                controller: 'detailsController'
-            })
-    })
-    app.controller('myCtrl', function ($rootScope, $scope, $http) {
+    angular
+        .module('app', ['ngRoute'])
+        .controller('listController', listController)
+        .controller('detailsController', detailsController)
+
+    listController.$inject = [
+        '$http',
+        '$scope',
+        '$rootScope',
+        'pokeServices'
+    ];
+
+    detailsController.$inject = [
+        '$http',
+        '$scope',
+        '$rootScope',
+        '$routeParams',
+        'pokeServices'
+    ];
+
+    function listController($rootScope, $scope, $http, pokeServices) {
         var self = this;
         self.$onInit = onInit;
+        $scope.getListPokemon = getListPokemon;
+        $scope.getListPokemon();
+
         function onInit() {
             $scope.previous = null;
         }
-        $http({
-            method: 'GET',
-            url: 'https://pokeapi.co/api/v2/pokemon/'
-        }).then(function (response) {
-            $rootScope.pokeList = response.data.results;
-            $scope.next = response.data.next;
-            $scope.previous = response.data.previous;
-        });
-        $scope.getDetail = function (currUrl) {
+
+        function getListPokemon() {
+            pokeServices.getListPokemon().then(function (response) {
+                $rootScope.pokeList = response.data.results;
+                $scope.next = response.data.next;
+                $scope.previous = response.data.previous;
+            })
+
+        }
+
+        $scope.getLink = function (currUrl) {
             $http({
                 method: 'GET',
                 url: currUrl
@@ -43,8 +56,9 @@
                 $scope.previous = response.data.previous;
             });
         }
-    });
-    app.controller('detailsController', function ($rootScope, $scope, $http, $routeParams) {
+    }
+
+    function detailsController($rootScope, $scope, $http, $routeParams, pokeServices) {
         function details() {
             for (var i in $rootScope.pokeList) {
                 if ($rootScope.pokeList[i].name == $routeParams.pokemonName) {
@@ -61,10 +75,7 @@
             }
         }
         if (!$rootScope.pokeList) {
-            $http({
-                method: 'GET',
-                url: "https://pokeapi.co/api/v2/pokemon"
-            }).then(function (response) {
+            pokeServices.getListPokemon().then(function (response) {
                 $rootScope.pokeList = response.data.results;
                 $scope.next = response.data.next;
                 $scope.previous = response.data.previous;
@@ -73,5 +84,5 @@
         } else {
             details();
         }
-    });
+    }
 })()
