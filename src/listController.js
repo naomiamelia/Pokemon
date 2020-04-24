@@ -5,14 +5,30 @@
 
     listController.$inject = [
         '$rootScope',
-        'listServices'
+        'listServices',
+        '$scope'
     ];
 
-    function listController($rootScope, listServices) {
+    function listController($rootScope, listServices, $scope) {
         var vm = this;
         vm.$onInit = onInit;
         vm.getListPokemon = getListPokemon;
         vm.getListPokemon();
+
+        $scope.name = 'World';
+
+        $scope.onTourReady = function (tour) {
+
+            tour.start();
+
+        };
+
+        $scope.startTour = function () {
+            console.log('start tour');
+
+            this.tour.start();
+
+        };
 
         function onInit() {
             vm.previous = null;

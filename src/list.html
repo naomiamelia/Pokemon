@@ -1,4 +1,10 @@
-<div class="listPokemon">
+<div class="listPokemon" ui-tour ui-tour-append-to-body=false ui-tour-scroll-offset="700"
+    ui-tour-on-ready="onTourReady(tour)">
+    <p id="main0" 
+        tour-step tour-step-title="Startup Tour" 
+        tour-step-content="Navigate the site using this menu."
+        tour-step-order="0" 
+        tour-step-placement="bottom-left">Hello {{name}}!</p>
     <b>Pokemon Name :</b>
     <ul ng-repeat="x in $root.pokeList">
         <br>

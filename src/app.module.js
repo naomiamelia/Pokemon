@@ -1,4 +1,6 @@
 (function () {
     angular
-        .module('app', ['ngRoute'])
+        .module('app', [
+            'ngRoute', 
+            'bm.uiTour'])
 })();
